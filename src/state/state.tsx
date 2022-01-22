@@ -1,19 +1,23 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { Task } from '../models/Task.types';
+import { Todo } from '../models/Todo.types';
 import { User } from '../models/User.types';
 
 import { Action } from './reducer';
 
 export type State = {
-  tasks: { [id: number]: Task };
+  todos: { [id: number]: Todo };
 	users: { [id: number]: User };
 	isLoading: boolean;
+	isLoggedIn: boolean;
+	currentUser : User | null;
 };
 
 const initialState: State = {
-	tasks: {},
+	todos: {},
 	users: {},
-	isLoading: false
+	isLoading: false,
+	isLoggedIn: false,
+	currentUser: null
 };
 
 export const StateContext = createContext<[State, React.Dispatch<Action>]>([

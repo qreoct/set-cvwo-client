@@ -67,7 +67,9 @@ h1 {
 
 p,
 a,
-span {
+span,
+label,
+button {
   font-family: var(--ff-secondary);
 }
 
@@ -101,8 +103,30 @@ TYPOGRAPHY HELPER CLASS
   font-size: var(--size-700);
 }
  
+.typography--hyperlink {
+  color: var(--oc-blue-9)
+}
+
 .typography--hyperlink::after {
   content: '↗';
+}
+
+.typography--hover-spicy:hover {
+  background-color: var(--oc-green-2);
+}
+
+/*
+=======================
+COMPONENTS
+=======================
+*/
+
+.button {
+  border: none;
+  font-size: var(--size-500);
+  cursor: pointer;
+  padding: var(--size-300);
+  border-radius: 5px;
 }
 
 /*
@@ -234,7 +258,14 @@ BODY
 =======================
 */
 
-.content {
+.display-content {
+  flex: 1 1 auto;
+  overflow: auto;
+  width: 100%;
+  padding: var(--size-700);
+}
+
+.interactive-content {
   flex: 1 1 auto;
   overflow: auto;
   width: 100%;
@@ -242,7 +273,7 @@ BODY
 }
 
 @media (max-width: 680px) {
-  .content {
+  .interactive-content {
     margin-top: 150px;
     padding: var(--size-500);
   }
@@ -269,28 +300,28 @@ CARD
   }
 }
 
-.task-display-container {
+.todo-display-container {
   margin-bottom: var(--size-300);
   width: fit-content;
 }
 
-.task-display-container:hover {
+.todo-display-container:hover {
   text-decoration: line-through;
   color: var(--oc-gray-6);
   opacity: 0.6;
   cursor: pointer;
 }
 
-.task-display-task, .task-display-checkbox, .task-display-assigned {
+.todo-display-todo, .todo-display-checkbox, .todo-display-assigned {
   display: inline;
 }
 
-.task-display-checkbox {
+.todo-display-checkbox {
   vertical-align: middle;
   color: var(--oc-gray-6);  
 }
 
-.task-display-deadline {
+.todo-display-deadline {
   color: var(--oc-gray-6);
 }
 
@@ -311,5 +342,27 @@ CARD
 
 .picture-skittle + .picture-skittle {
   margin-left: -10px;
+}
 
+/*
+=======================
+FORM
+=======================
+*/
+
+.form {
+  margin: var(--size-900) 0px;
+}
+
+.login-form__input {
+  height: var(--size-100);
+  font-size: var(--size-600);
+}
+
+.login-form__button {
+  background-color: var(--oc-green-2);
+}
+
+.register-form__button {
+  background-color: var(--oc-blue-2);
 }

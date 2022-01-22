@@ -1,8 +1,8 @@
-import type { User } from '../models/User.types';
+import type { User } from './User.types';
 
-export type Task = {
+export type Todo = {
 	id: number;
-	task_name: string;
+	todo_name: string;
 	created_by: string;
 	assigned_to: string[];
 	deadline?: string;

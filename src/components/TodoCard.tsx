@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Task } from '../models/Task.types';
+import { Todo } from '../models/Todo.types';
 import { User } from '../models/User.types';
 
-import TaskDisplay from './TaskDisplay';
+import TodoDisplay from './TodoDisplay';
 import UserDisplay from './UserDisplay';
 
 interface CardProps {
@@ -21,7 +21,7 @@ interface ContentsProps {
 function getSpecificContentDisplay(content: any[]) {
 	const contentDisplayDictionary: {[key: string]: React.ReactElement} = 	
 		{
-			'task': <TaskDisplay tasks={content}/>,
+			'todo': <TodoDisplay todos={content}/>,
 			'user': <UserDisplay users={content}/>
 		};
 	return contentDisplayDictionary;
@@ -35,7 +35,7 @@ function ContentsDisplay({ state, content }: ContentsProps): React.ReactElement 
 	);
 }
 
-const TaskCard = ({ sectionTitle, hasButton, contentDisplayType, content, onSubmit }: CardProps) => {
+const TodoCard = ({ sectionTitle, hasButton, contentDisplayType, content, onSubmit }: CardProps) => {
 
 	return (
 		<>
@@ -48,4 +48,4 @@ const TaskCard = ({ sectionTitle, hasButton, contentDisplayType, content, onSubm
 	);
 };
 
-export default TaskCard;
+export default TodoCard;

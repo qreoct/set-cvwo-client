@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TeamTasksPage = () => {
+const TeamTodosPage = () => {
 	return (
-		<div className='content'>
+		<div className='interactive-content'>
 			<h1>Lorem Ipsum</h1>
 			<p>
         Quis nostrud exercitation
@@ -128,4 +128,4 @@ const TeamTasksPage = () => {
 	);
 };
 
-export default TeamTasksPage;
+export default TeamTodosPage;

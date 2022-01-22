@@ -50,5 +50,6 @@
     "@typescript-eslint/parser": "^5.8.0",
     "eslint": "^8.5.0",
     "eslint-plugin-react": "^7.28.0"
-  }
+  },
+  "proxy": "http://localhost:3001/"
 }

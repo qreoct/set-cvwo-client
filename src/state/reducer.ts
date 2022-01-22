@@ -1,47 +1,83 @@
 import { State } from './state';
-import type { Task } from '../models/Task.types';
+import type { Todo } from '../models/Todo.types';
 import type { User } from '../models/User.types';
 
 export type Action =
+// TODO
   | {
-      type: 'SET_TASK_LIST';
-      payload: Task[];
-    }
-  | {
-      type: 'ADD_TASK';
-      payload: Task;
+      type: 'ADD_TODO';
+      payload: Todo;
     }
 	| {
-			type: 'FETCHING_TASKS';
-		};
+		type: 'FETCHING_TODOS';
+	}
+	| {
+		type: 'SET_TODO_LIST';
+		payload: Todo[];
+	}
+// USER
+	| {
+		type: 'SET_IS_LOGGED_IN';
+		payload: boolean;
+	}
+	| {
+			type: 'SET_CURRENT_USER';
+			payload: User;
+		}
+	| {
+			type: 'REMOVE_CURRENT_USER';
+	};
 
 export const reducer = (state: State, action: Action): State => {
 	switch (action.type) {
-	case 'FETCHING_TASKS':
+	// TODO
+	case 'ADD_TODO':
+		console.log('a new todo has been added!!!' + JSON.stringify(action.payload));
+		return {
+			...state,
+			todos: {
+				...state.todos,
+				[action.payload.id]: action.payload
+			}
+		};
+	case 'FETCHING_TODOS':
 		return {
 			...state,
 			isLoading: true
 		};
-	case 'SET_TASK_LIST':
+	case 'SET_TODO_LIST':
 		return {
 			...state,
-			tasks: {
+			todos: {
 				...action.payload.reduce(
-					(memo, task) => ({ ...memo, [task.id]: task }),
+					(memo, todo) => ({ ...memo, [todo.id]: todo }),
 					{}
 				),
-				...state.tasks
+				...state.todos
 			},
 			isLoading: false
 		};
-	case 'ADD_TASK':
-		console.log('a new task has been added!!!' + JSON.stringify(action.payload));
+		
+	// USER
+	case 'SET_IS_LOGGED_IN':
 		return {
 			...state,
-			tasks: {
-				...state.tasks,
-				[action.payload.id]: action.payload
+			isLoggedIn: action.payload
+		};
+	case 'SET_CURRENT_USER':
+		console.log(action.payload);
+		return {
+			...state,
+			currentUser: {
+				id: action.payload.id,
+				name: action.payload.name,
+				username: action.payload.username
 			}
+		};
+	case 'REMOVE_CURRENT_USER':
+		return {
+			...state,
+			currentUser: null
 		};
 	default:
 		return state;

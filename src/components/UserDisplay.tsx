@@ -10,7 +10,7 @@ const UserDisplay = (props: Props) => {
 		<ol>
 			<li> this is the user display. </li>
 			{props.users.map((u?:User) => 
-				<li key={u?.id}> {u?.display_name} </li>
+				<li key={u?.id}> {u?.name} </li>
 			)}
 		</ol>
 	);

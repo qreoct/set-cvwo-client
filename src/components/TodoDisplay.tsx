@@ -1,32 +1,32 @@
 import React from 'react';
-import type { Task } from '../models/Task.types';
+import type { Todo } from '../models/Todo.types';
 import { Square } from 'react-feather';
 import PictureSkittle from './PictureSkittle';
 
 interface Props {
-	tasks: Task[];
+	todos: Todo[];
 }
 
 
-const TaskDisplay = (props: Props) => {
+const TodoDisplay = (props: Props) => {
 
 	return (
 		<ol>
-			{props.tasks.map((t?:Task) => 
-				<div key={t?.id} className='task-display-container'> 
-					<div className='task-display-checkbox'>
+			{props.todos.map((t?:Todo) => 
+				<div key={t?.id} className='todo-display-container'> 
+					<div className='todo-display-checkbox'>
 						<Square />
 					</div>
-					<div className='task-display-task'>
-						<span> {t?.task_name} </span>
+					<div className='todo-display-todo'>
+						<span> {t?.todo_name} </span>
 						{t?.deadline &&
-						<span className='task-display-deadline'>
+						<span className='todo-display-deadline'>
 							<em>
 								{`[Due on ${new Date(t?.deadline).toDateString()}]`}
 							</em>
 						</span>
 						}
-						<div className='task-display-assigned'>
+						<div className='todo-display-assigned'>
 							{t?.assigned_to && 
 								t?.assigned_to.map((p) => 
 									<PictureSkittle key={p} data={p} />
@@ -41,4 +41,4 @@ const TaskDisplay = (props: Props) => {
 
 };
 
-export default TaskDisplay;
+export default TodoDisplay;

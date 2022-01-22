@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../state/state';
 
 
-const CreateTaskForm = () => {
-	const [{ tasks }, dispatch] = useStateValue();
+const CreateTodoForm = () => {
+	const [{ todos }, dispatch] = useStateValue();
 
-	const [taskNameField, setTaskNameField] = useState<string>('');
+	const [todoNameField, setTodoNameField] = useState<string>('');
 
 	const updateFieldWithText = (f: (s: string) => void, text: string): void => {
 		f(text);
@@ -23,37 +23,37 @@ const CreateTaskForm = () => {
 
 	const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const addTask = async () => {
+		const addTodo = async () => {
 			try {
-				const taskToAdd = {
+				const todoToAdd = {
 					id: Math.floor(Math.random()*55 + 5),
-					task_name: taskNameField,
+					todo_name: todoNameField,
 					created_by: 'Ronald McDonald',
 					assigned_to: generateRandomNames(),
 					created_on: JSON.stringify(new Date),
 					completed: false,
 					tags: []
 				};
-				dispatch({type: 'ADD_TASK', payload: taskToAdd});
+				dispatch({type: 'ADD_TODO', payload: todoToAdd});
 			} catch (e) {
 				console.error(e);
 			}
 		};
-		addTask();
-		setTaskNameField('');
+		addTodo();
+		setTodoNameField('');
 	};
 
 	return (
-		<div className='create-task-form'>
-			<h3> New Task </h3>
+		<div className='create-todo-form'>
+			<h3> New Todo </h3>
 			<form onSubmit={(e) => handleSubmitForm(e)}>
-				<label htmlFor='task-form__task-name'> I have to...</label>
-				<input id='task-form__task-name' type='text' value={taskNameField}
-					onChange={(e) => updateFieldWithText(setTaskNameField, e.target.value)} />
+				<label htmlFor='todo-form__todo-name'> I have to...</label>
+				<input id='todo-form__todo-name' type='text' value={todoNameField}
+					onChange={(e) => updateFieldWithText(setTodoNameField, e.target.value)} />
 				<button type='submit'> Submit </button>
 			</form>
 		</div>
 	);
 };
 
-export default CreateTaskForm;
+export default CreateTodoForm;

@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../assets/wordmark-black.svg';
 import UserImage from '../assets/dog.jpg';
-import { User, Users, Search, CheckSquare, Tool, Menu } from 'react-feather';
+import { User, Users, Search, CheckSquare, Tool, Menu, LogOut } from 'react-feather';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../state';
 
 const Navbar = () => {
 
 	const [isMobileNavbarShowing, setIsMobileNavbarShowing] = useState(false);
+	const [currentUsername, setCurrentUsername] = useState('');
+	const [{ isLoggedIn, currentUser }, dispatch] = useStateValue();
+
+	useEffect(() => {
+		if (currentUser != null) {
+			setCurrentUsername(currentUser.name);
+		}
+	}, []);
 
 	const toggleNavBar = () => {
 		if(isMobileNavbarShowing) {
@@ -43,7 +52,7 @@ const Navbar = () => {
 
 				<ul className='navbar__links'>
 					<li>
-						<Link to="tasks">
+						<Link to="todos">
 							<User />
 							<span className='navbar__link'> Me </span>
 						</Link>
@@ -72,13 +81,19 @@ const Navbar = () => {
 							<span className='navbar__link'> Manage </span>
 						</Link>
 					</li>
+					<li>
+						<Link to='/logout'>
+							<LogOut />
+							<span className='navbar__link'> Logout </span>
+						</Link>
+					</li>
 
 				</ul>
 				<div className='navbar__user'>
 					<img src={UserImage} style={{borderRadius:100, height:36, width:36, verticalAlign:'middle'}}/>
 					<div className='navbar__user-details'>
-						<strong> <span> Ronald McDonald </span> </strong>
-						<span className='typography--label'> Training Director </span>
+						<strong> <span> {currentUsername} </span> </strong>
+						<span className='typography--label'> Beta Tester </span>
 					</div>
 				</div>
 			</nav>

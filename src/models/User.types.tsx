@@ -1,8 +1,8 @@
 import type { Todo } from '../models/Todo.types';
 
 export type User = {
-	id: number;
-	username: string;
+	id?: number;
+	username?: string;
 	name: string;
 	user_role?: string;
 	is_admin?: boolean;

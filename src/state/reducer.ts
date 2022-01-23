@@ -15,6 +15,10 @@ export type Action =
 		type: 'SET_TODO_LIST';
 		payload: Todo[];
 	}
+	| {
+		type: 'UPDATE_TODO';
+		payload: Todo;
+	}
 // USER
 	| {
 		type: 'SET_IS_LOGGED_IN';
@@ -33,6 +37,14 @@ export const reducer = (state: State, action: Action): State => {
 	// TODO
 	case 'ADD_TODO':
 		console.log('a new todo has been added!!!' + JSON.stringify(action.payload));
+		return {
+			...state,
+			todos: {
+				...state.todos,
+				[action.payload.id]: action.payload
+			}
+		};
+	case 'UPDATE_TODO':
 		return {
 			...state,
 			todos: {

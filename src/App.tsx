@@ -15,6 +15,8 @@ import RegisterPage from './pages/RegisterPage';
 import loginServices from './services/login';
 import { useStateValue } from './state';
 import { User } from './models/User.types';
+import CreateTodoPage from './pages/CreateTodoPage';
+import ViewTodoPage from './pages/ViewTodoPage';
 
 function App() {
 	
@@ -44,10 +46,12 @@ function App() {
 					<>
 						<Navbar />
 						<Routes>
-							<Route path='/' element={<WelcomePage />} />
+							<Route path='/' element={<MyTodosPage />} />
+							<Route path='/create' element={<CreateTodoPage />} />
 							<Route path='/team' element={<TeamTodosPage/>} />
 							<Route path='/todos' element={<MyTodosPage/>} />
 							<Route path='/logout' element={<LogoutPage/>} />
+							<Route path='/todos/:id' element={<ViewTodoPage/>} />
 						</Routes>
 					</>
 					:

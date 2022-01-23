@@ -13,7 +13,7 @@ const WelcomePage = () => {
 
 			<img src={PreviewPic} style={{display: 'block', maxHeight: 450}}/>
 			
-			<a href="/login" className='typography--hyperlink typography--large typography--hover-spicy'> Ready? Get SET </a>
+			<a href="/login" className='typography--hyperlink typography--xlarge typography--hover-spicy'> Ready? Get SET </a>
 		</div>
 	);
 };

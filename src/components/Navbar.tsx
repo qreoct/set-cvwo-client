@@ -42,9 +42,9 @@ const Navbar = () => {
 						<img src={Logo} className='site__logo navbar__logo' />
 					</Link>
 					{isMobileNavbarShowing &&
-					<Link to='/' className='typography--button' onClick={() => toggleNavBar()}>
+					<div className='typography--button' onClick={() => toggleNavBar()}>
 						<Menu />
-					</Link>
+					</div>
 					}
 					
 				</div>
@@ -105,9 +105,9 @@ const Navbar = () => {
 					</Link>
 				</div>
 
-				<Link to='/' className='typography--button' onClick={() => toggleNavBar()}>
+				<div className='typography--button' onClick={() => toggleNavBar()}>
 					<Menu />
-				</Link>
+				</div>
 			</div>
 		</div>
 	);

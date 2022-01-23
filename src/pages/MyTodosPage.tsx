@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { useStateValue } from '../state/state';
 
-import TodoUtils from '../utils/todos';
+import todoService from '../services/todos';
 import type { Todo } from '../models/Todo.types';
 
-import CreateTodoForm from '../components/CreateTodoForm';
-import TodoCard from '../components/TodoCard';
+import TodoCard from '../components/TodoCard/TodoCard';
 
 const MyTodosPage = () => {
 
@@ -15,7 +14,7 @@ const MyTodosPage = () => {
 		dispatch({ type: 'FETCHING_TODOS' });
 		const getTodos = async () => {
 			try {
-				const res: Todo[] = await TodoUtils.getTodos() ?? [];
+				const res: Todo[] = await todoService.getTodos();
 				dispatch({ type: 'SET_TODO_LIST', payload: res });
 			} catch (e) {
 				console.error(e);
@@ -29,12 +28,9 @@ const MyTodosPage = () => {
 			{isLoading ?
 				<p> loading </p>
 				:
-				<TodoCard sectionTitle='My Todos' hasButton={false} contentDisplayType='todo' content={Object.values(todos)}
+				<TodoCard sectionTitle='My Todos' hasButton={true} contentDisplayType='todo' content={Object.values(todos)}
 					onSubmit={() => alert('submitted')} />
 			}
-
-			<hr />
-			<CreateTodoForm />
 		</div>
 	);
 };

@@ -43,15 +43,26 @@ const RegisterForm = () => {
 				console.error(e);
 			}
 		};
-		if (usernameField.length < 4) {
-			setMessageField('Username must be at least 4 characters! Please try again!');
-			return;
-		}
-		if (nameField.length < 4) {
-			setMessageField('Name must be at least 4 characters! Please try again!');
+		if (!validateFields()) {
 			return;
 		}
 		attemptLogin();
+		clearFields();
+	};
+
+	const validateFields = (): boolean => {
+		if (usernameField.length < 4) {
+			setMessageField('Username must be at least 4 characters! Please try again!');
+			return false;
+		}
+		if (nameField.length < 4) {
+			setMessageField('Name must be at least 4 characters! Please try again!');
+			return false;
+		}
+		return true;
+	};
+
+	const clearFields = () => {
 		setUsernameField('');
 		setNameField('');
 	};
@@ -59,20 +70,20 @@ const RegisterForm = () => {
 	return (
 		<div className='form register-form'>
 			<form onSubmit={(e) => handleSubmitForm(e)}>
-				<label htmlFor='login-form__login-username'> Username </label>
+				<label htmlFor='login-form__login-username' className='typography--label'> Username </label>
 				<br />
-				<input id='login-form__login-username' className='login-form__input' type='text' value={usernameField}
+				<input id='login-form__login-username' className='input--bordered' type='text' value={usernameField}
 					onChange={(e) => updateFieldWithText(setUsernameField, e.target.value)} />
 				<br />
-				<label htmlFor='login-form__login-name'> Name </label>
+				<label htmlFor='login-form__login-name' className='typography--label'> Name </label>
 				<br />
-				<input id='login-form__login-name' className='login-form__input' type='text' value={nameField}
+				<input id='login-form__login-name' className='input--bordered' type='text' value={nameField}
 					onChange={(e) => updateFieldWithText(setNameField, e.target.value)} />
 				<br />
 				<button type='submit' className='register-form__button button'> Create Account </button>
 			</form>
 
-			<p className='typography-bold'> {messageField} </p>
+			<p className='typography--bold'> {messageField} </p>
 		</div>
 	);
 };

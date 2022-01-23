@@ -29,7 +29,6 @@ const LoginForm = () => {
 				} else {
 					setMessageField('Logging in...!');
 					const user = userLoggedIn.user;
-					console.log('result: ' + JSON.stringify(user));
 					if (user != undefined) {
 						dispatch({type: 'SET_CURRENT_USER', payload: user});
 						dispatch({type: 'SET_IS_LOGGED_IN', payload: userLoggedIn.logged_in});
@@ -39,6 +38,7 @@ const LoginForm = () => {
 				}
 
 			} catch (e) {
+				setMessageField('Some server error occured.');
 				console.error(e);
 			}
 		};
@@ -53,16 +53,16 @@ const LoginForm = () => {
 	return (
 		<div className='form login-form'>
 			<form onSubmit={(e) => handleSubmitForm(e)}>
-				<label htmlFor='login-form__login-username'> Username </label>
+				<label htmlFor='login-form__login-username' className='typography--label'> Username </label>
 				<br />
-				<input id='login-form__login-username' className='login-form__input' type='text' value={usernameField}
+				<input id='login-form__login-username' className='input--bordered' type='text' value={usernameField}
 					onChange={(e) => updateFieldWithText(setUsernameField, e.target.value)} />
 				<br />
 				<br />
 				<button type='submit' className='button login-form__button'> Login </button>
 			</form>
 
-			<p className='typography-bold'> {messageField} </p>
+			<p className='typography--bold'> {messageField} </p>
 		</div>
 	);
 };

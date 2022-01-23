@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Todo } from '../models/Todo.types';
-import { User } from '../models/User.types';
+import { Todo } from '../../models/Todo.types';
+import { User } from '../../models/User.types';
+import CreateTodoButton from '../CreateTodoButton';
 
-import TodoDisplay from './TodoDisplay';
-import UserDisplay from './UserDisplay';
+import TodosDisplay from './TodosDisplay';
+import UserDisplay from '../UserDisplay';
 
 interface CardProps {
 	sectionTitle: string;
@@ -21,7 +22,7 @@ interface ContentsProps {
 function getSpecificContentDisplay(content: any[]) {
 	const contentDisplayDictionary: {[key: string]: React.ReactElement} = 	
 		{
-			'todo': <TodoDisplay todos={content}/>,
+			'todo': <TodosDisplay todos={content}/>,
 			'user': <UserDisplay users={content}/>
 		};
 	return contentDisplayDictionary;
@@ -42,8 +43,8 @@ const TodoCard = ({ sectionTitle, hasButton, contentDisplayType, content, onSubm
 			<h1> {sectionTitle} </h1>
 			<div className='card'>
 				<ContentsDisplay state={contentDisplayType} content={content} />
+				{hasButton && <CreateTodoButton />}
 			</div>
-			{hasButton && <button> Button! </button>}
 		</>
 	);
 };

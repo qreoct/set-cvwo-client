@@ -38,7 +38,7 @@ html {
   }
 }
 
-body {
+label, body {
   color: var(--oc-gray-9);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,7 +69,8 @@ p,
 a,
 span,
 label,
-button {
+button,
+textarea {
   font-family: var(--ff-secondary);
 }
 
@@ -95,11 +96,38 @@ TYPOGRAPHY HELPER CLASS
   font-weight: 700;
 }
 
+.typography--no-decorate {
+  text-decoration: none;
+  color: inherit;
+}
+
+.typography--hover:hover {
+  color: var(--oc-gray-8);
+  font-weight: 600;
+}
+
+.typography--heavy {
+  font-family: var(--ff);
+  font-weight: 700;
+}
+
+.typography--bold {
+  font-weight: 600;
+}
+
 .typography--button {
   color: var(--oc-gray-8);
 }
 
+.typography--medium {
+  font-size: var(--size-500);
+}
+
 .typography--large {
+  font-size: var(--size-600);
+}
+
+.typography--xlarge {
   font-size: var(--size-700);
 }
  
@@ -127,6 +155,14 @@ COMPONENTS
   cursor: pointer;
   padding: var(--size-300);
   border-radius: 5px;
+}
+
+.button:hover {
+  filter: brightness(0.9);
+}
+
+.shadow {
+  box-shadow: var(--shadow-500);
 }
 
 /*
@@ -292,6 +328,8 @@ CARD
   padding: var(--size-600) var(--size-900);
   margin: var(--size-200);
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 680px) {
@@ -303,9 +341,10 @@ CARD
 .todo-display-container {
   margin-bottom: var(--size-300);
   width: fit-content;
+  display: flex;
 }
 
-.todo-display-container:hover {
+.todo-display-container--hovered {
   text-decoration: line-through;
   color: var(--oc-gray-6);
   opacity: 0.6;
@@ -318,11 +357,23 @@ CARD
 
 .todo-display-checkbox {
   vertical-align: middle;
-  color: var(--oc-gray-6);  
+  color: var(--oc-gray-6);
+  margin-right: var(--size-300);  
 }
 
 .todo-display-deadline {
   color: var(--oc-gray-6);
+}
+
+.todo-display-tag {
+  margin-right: var(--size-300);
+}
+
+.todo-display-tag::before {
+  content: '[';
+}
+.todo-display-tag::after {
+  content: ']';
 }
 
 .picture-skittle {
@@ -337,11 +388,86 @@ CARD
   color: var(--oc-gray-1);
   font-size: var(--size-500);
   border: 1px solid var(--oc-gray-1);
-  box-shadow: var(--shadow-500);
 }
 
 .picture-skittle + .picture-skittle {
   margin-left: -10px;
+}
+
+.picture-skittle--large {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  font-size: var(--size-600)
+}
+
+.create-todo {
+  width: 300px;
+  color: var(--oc-gray-1);
+  background-color: var(--oc-lime-4);
+  text-align: center;
+  align-self: center;
+  margin-top: var(--size-400);
+}
+
+.create-todo:hover{
+  background-color: var(--oc-lime-5);
+}
+
+/*
+=======================
+TODO-VIEW
+=======================
+*/
+
+.todo-view-container > div {
+  margin: var(--size-400) 0px;
+}
+
+.todo-display-notes {
+  margin-top: var(--size-800);
+}
+
+.todo-display-notepad {
+  padding: var(--size-400);
+  margin-top: var(--size-400);
+  min-width: 300px;
+  min-height: 300px;
+  background-color: var(--oc-gray-1);
+  box-shadow: var(--shadow-500);
+}
+
+.todo-display-edit-button {
+  margin: var(--size-600) 0px;
+  background-color: var(--oc-orange-4);
+  width: calc(2 * var(--size-900));
+  text-align: center;
+  color: var(--oc-gray-0);
+}
+
+.todo-display-save-button {
+  margin: var(--size-400);
+  background-color: var(--oc-green-4);
+  width: calc(2 * var(--size-900));
+  text-align: center;
+  color: var(--oc-gray-0);
+}
+
+.todo-display-cancel-button {
+  margin: var(--size-400);
+  background-color: var(--oc-gray-1);
+  width: calc(2 * var(--size-900));
+  text-align: center;
+}
+
+.editable-textarea {
+  margin-top: var(--size-400);
+  padding: var(--size-300);
+  min-width: 400px;
+  min-height: 300px;
+  font-size: var(--size-500);
+  resize: none;
+  overflow: auto;
 }
 
 /*
@@ -354,9 +480,34 @@ FORM
   margin: var(--size-900) 0px;
 }
 
-.login-form__input {
+.form-field {
+  margin: var(--size-600) 0px;
+}
+
+.form-checkbox {
+  height: 24px;
+  width: 24px;
+}
+
+.input--bordered {
   height: var(--size-100);
   font-size: var(--size-600);
+  margin: var(--size-400);
+}
+
+.input--underlined {
+  font-size: var(--size-700);
+  border: none;
+  border-bottom: var(--oc-gray-8) solid 2px;
+}
+
+.input--underlined::placeholder {
+  color: var(--oc-gray-5);
+}
+
+.input--underlined:disabled {
+  opacity: 0.3;
+  color: var(--oc-gray-1);
 }
 
 .login-form__button {
@@ -365,4 +516,34 @@ FORM
 
 .register-form__button {
   background-color: var(--oc-blue-2);
+}
+
+.input-tag__tags {
+  border: var(--oc-gray-2) 1px solid;
+  border-radius: var(--size-300);
+  align-items: center;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px 10px;
+  width: fit-content;
+}
+
+.input-tag__tags:hover {
+  background-color: var(--oc-gray-1);
+}
+
+.input-tag__remove-button {
+  align-items: center;
+  background: var(--oc-gray-3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 14px;
+  height: 15px;
+  justify-content: center;
+  line-height: 0;
+  margin-left: 8px;
+  transform: rotate(45deg);
+  width: 15px;
 }

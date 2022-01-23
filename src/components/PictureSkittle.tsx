@@ -2,7 +2,8 @@ import React from 'react';
 
 interface pictureSkittleProps {
 	img_url?: string,
-	data: string
+	data: string,
+	size?: string
 }
 
 const PictureSkittle = (props: pictureSkittleProps) => {
@@ -18,8 +19,10 @@ const PictureSkittle = (props: pictureSkittleProps) => {
 		return colors[index];
 	}
 
+	const size = props.size == 'large' ? 'picture-skittle--large' : '';
+
 	return (
-		<div className='picture-skittle' style={{backgroundColor:`var(--oc-${getColorFromName(props.data)}-5)`}}>
+		<div className={`picture-skittle ${size} shadow`} style={{backgroundColor:`var(--oc-${getColorFromName(props.data)}-5)`}}>
 			{props.img_url && <span> image </span>}
 			<span> {props.data.charAt(0).toUpperCase()} </span>
 		</div>

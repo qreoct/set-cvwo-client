@@ -13,7 +13,7 @@ const logIn = async (user: Record<string, string>): Promise<LoginResponse> => {
 	return res;
 };
 
-const logOut = async() => {
+const logOut = async () => {
 	const res = await axios.post(`${baseUrl}/logout`);
 };
 

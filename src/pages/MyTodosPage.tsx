@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../state/state';
 
 import todoService from '../services/todos';
@@ -8,7 +8,8 @@ import TodoCard from '../components/TodoCard/TodoCard';
 
 const MyTodosPage = () => {
 
-	const [{ todos, users, isLoading }, dispatch] = useStateValue();
+	const [{ todos, users, isLoading, currentUser }, dispatch] = useStateValue();
+	const [currentTodos, setCurrentTodos] = useState<Todo[]>([]);
 	
 	useEffect(() => {
 		dispatch({ type: 'FETCHING_TODOS' });
@@ -21,15 +22,28 @@ const MyTodosPage = () => {
 			}
 		};
 		getTodos();
+		console.log(JSON.stringify(Object.values(todos)));
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (currentUser) {
+			const todosArray = Object.values(todos);
+			const currentTodos = todosArray.filter(t => !t.done)
+				.filter(t => t.users.filter(u => u.id == currentUser.id).length > 0 );
+			setCurrentTodos(currentTodos);
+		}
+	}, [todos]);
 
 	return (
 		<div className='interactive-content'>
 			{isLoading ?
 				<p> loading </p>
 				:
-				<TodoCard sectionTitle='My Todos' hasButton={true} contentDisplayType='todo' content={Object.values(todos)}
-					onSubmit={() => alert('submitted')} />
+				<>
+					<h1> My Todos </h1>
+					<TodoCard sectionTitle='' hasButton={true} contentDisplayType='todo' content={currentTodos}
+						emptyMessage='You have no todos... yet!'/>
+				</ >
 			}
 		</div>
 	);

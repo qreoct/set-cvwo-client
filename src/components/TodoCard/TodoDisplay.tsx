@@ -3,31 +3,51 @@ import type { Todo } from '../../models/Todo.types';
 import PictureSkittle from '../PictureSkittle';
 import { Square, CheckSquare} from 'react-feather';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../../state';
+
+import todoServices from '../../services/todos';
 
 interface Props {
 	todo: Todo;
 }
 
-const TodosDisplay = (props: Props) => {
+const TodoDisplay = (props: Props) => {
 
+	const [{ currentUser }, dispatch] = useStateValue();
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 	const [hoveredClass, setHoveredClass] = useState<string>('');
 
-	const handleMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
+	
+
+	const handleMouseOver = () => {
 		setIsChecked(true);
 		setHoveredClass('todo-display-container--hovered');
 	};
 
-	const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleMouseLeave = () => {
 		setIsChecked(false);
 		setHoveredClass('');
 	};
 
+	const handleComplete = () => {
+		const completedTodo = {
+			...props.todo,
+			done: true
+		};
+		todoServices.updateTodo(props.todo.id, completedTodo);
+		dispatch({type: 'UPDATE_TODO', payload: completedTodo});
+	};
+
 	return (
 		<div className={`todo-display-container ${hoveredClass}`}>
-			<div className='todo-display-checkbox' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+
+			{currentUser && !props.todo.done && props.todo.users.filter(u => u.id == currentUser.id).length > 0 &&
+			<div className='todo-display-checkbox' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}
+				onClick={handleComplete}>
 				{isChecked ? <CheckSquare /> : <Square /> }
 			</div>
+			}
+
 			<div className='todo-display-todo'>
 				
 				<Link to={`/todos/${props.todo.id}`} className='typography--no-decorate typography--hover'>
@@ -63,4 +83,4 @@ const TodosDisplay = (props: Props) => {
 
 };
 
-export default TodosDisplay;
+export default TodoDisplay;

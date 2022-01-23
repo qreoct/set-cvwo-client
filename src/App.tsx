@@ -13,10 +13,13 @@ import LogoutPage from './pages/LogoutPage';
 import RegisterPage from './pages/RegisterPage';
 
 import loginServices from './services/login';
+import teamServices from './services/team';
 import { useStateValue } from './state';
 import { User } from './models/User.types';
 import CreateTodoPage from './pages/CreateTodoPage';
 import ViewTodoPage from './pages/ViewTodoPage';
+import ArchiveTodosPage from './pages/ArchiveTodosPage';
+import SearchPage from './pages/SearchPage';
 
 function App() {
 	
@@ -50,6 +53,8 @@ function App() {
 							<Route path='/create' element={<CreateTodoPage />} />
 							<Route path='/team' element={<TeamTodosPage/>} />
 							<Route path='/todos' element={<MyTodosPage/>} />
+							<Route path='/search' element={<SearchPage />} />
+							<Route path='/archive' element={<ArchiveTodosPage />} />
 							<Route path='/logout' element={<LogoutPage/>} />
 							<Route path='/todos/:id' element={<ViewTodoPage/>} />
 						</Routes>

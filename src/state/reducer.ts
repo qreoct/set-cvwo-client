@@ -30,6 +30,11 @@ export type Action =
 		}
 	| {
 			type: 'REMOVE_CURRENT_USER';
+	}
+// TEAM
+	| {
+		type: 'SET_TEAM';
+		payload: User[]
 	};
 
 export const reducer = (state: State, action: Action): State => {
@@ -90,6 +95,18 @@ export const reducer = (state: State, action: Action): State => {
 		return {
 			...state,
 			currentUser: null
+		};
+	// TEAM
+	case 'SET_TEAM':
+		return {
+			...state,
+			users: {
+				...action.payload.reduce(
+					(memo, user) => ({ ...memo, [user.id]: user }),
+					{}
+				),
+				...state.users,
+			}
 		};
 	default:
 		return state;

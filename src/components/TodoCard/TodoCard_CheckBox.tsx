@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Square, CheckSquare} from 'react-feather';
 
-const TodoCard_CheckBox = () => {
+interface CheckBoxProps {
+	handleComplete: () => void;
+}
 
+const TodoCard_CheckBox = ({handleComplete}: CheckBoxProps) => {
 
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 
@@ -15,7 +18,8 @@ const TodoCard_CheckBox = () => {
 	};
 
 	return (
-		<div className='todo-display-checkbox' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+		<div className='todo-display-checkbox' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}
+			onClick={handleComplete}>
 			{isChecked ? <CheckSquare /> : <Square /> }
 		</div>
 	);

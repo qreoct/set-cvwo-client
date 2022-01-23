@@ -64,21 +64,15 @@ const Navbar = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to='/'>
+						<Link to='/archive'>
 							<CheckSquare />
 							<span className='navbar__link'> Archive </span>
 						</Link>
 					</li>
 					<li>
-						<Link to='/'>
+						<Link to='/search'>
 							<Search />
 							<span className='navbar__link'> Search </span>
-						</Link>
-					</li>
-					<li>
-						<Link to='/'>
-							<Tool />
-							<span className='navbar__link'> Manage </span>
 						</Link>
 					</li>
 					<li>

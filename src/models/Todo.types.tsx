@@ -8,7 +8,7 @@ export type Todo = {
 	users: User[];
 	deadline?: string;
 	created_on: string;
-	completed: boolean;
+	done: boolean;
 	tags: Tag[];
 	notes: string;
 };

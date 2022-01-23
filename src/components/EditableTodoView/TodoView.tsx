@@ -61,14 +61,17 @@ const TodoView = (props: Props) => {
 					: <ViewOnlyNotesArea text={props.todo.notes} /> }
 			</div>
 
-			{!isEditingMode && isEditor &&
+			{!isEditingMode && isEditor && !props.todo.done &&
 			<div className='todo-display-edit-button button'
 				onClick={e => handleGoToEditingMode(e)}>
 				<span className='typography--bold'> Edit Todo </span>
 			</div>
 			}
 
-			<p className='typography--bold'> {messageField} </p>
+			{props.todo.done
+				? <p className='typography--bold'> This todo has been archived. </p>
+				: <p className='typography--bold'> {messageField} </p>
+			}
 
 		</div>
 	);

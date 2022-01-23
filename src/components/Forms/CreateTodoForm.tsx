@@ -19,7 +19,7 @@ const CreateTodoForm = () => {
 		id: 0,
 		created_by: 0,
 		created_on: '',
-		completed: false,
+		done: false,
 		title: '',
 		deadline: '',
 		users: [],
@@ -53,7 +53,8 @@ const CreateTodoForm = () => {
 		}
 		randomNames.forEach(name => {
 			users.push({
-				name: name,
+				id: Math.floor(Math.random()*55+1),
+				name: name
 			});
 		});
 		return users;
@@ -71,7 +72,7 @@ const CreateTodoForm = () => {
 						users: generateRandomUsers(),
 						created_on: (new Date).toISOString(),
 						deadline: utils.ddMmYyyyToDateObject(todoToAdd.deadline).toISOString(),
-						completed: false,
+						done: false,
 						tags: todoToAdd.tags,
 						notes: 'there are some notes'
 					};
@@ -131,7 +132,7 @@ const CreateTodoForm = () => {
 			id: 0,
 			created_by: 0,
 			created_on: '',
-			completed: false,
+			done: false,
 			title: '',
 			users: [],
 			tags: [],

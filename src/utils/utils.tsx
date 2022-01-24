@@ -36,7 +36,6 @@ const ddMmYyyyToDateObject = (string: string): Date => {
 	const day = parseInt(userDDMMYYYY[0]);
 
 	const userDate = new Date(year, monthIndex, day);
-	console.log(userDate.toDateString());
 	return userDate;
 };
 

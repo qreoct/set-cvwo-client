@@ -41,7 +41,6 @@ const CreateTodo_AssignedComponent = ({onChange, submitted, setSubmitted}: Assig
 
 	useEffect(() => {
 		onChange(state);
-		console.log(state);
 	}, [state]);
 
 	useEffect(() => {

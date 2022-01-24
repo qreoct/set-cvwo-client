@@ -41,7 +41,6 @@ export const reducer = (state: State, action: Action): State => {
 	switch (action.type) {
 	// TODO
 	case 'ADD_TODO':
-		console.log('a new todo has been added!!!' + JSON.stringify(action.payload));
 		return {
 			...state,
 			todos: {
@@ -82,7 +81,6 @@ export const reducer = (state: State, action: Action): State => {
 			isLoggedIn: action.payload
 		};
 	case 'SET_CURRENT_USER':
-		console.log(action.payload);
 		return {
 			...state,
 			currentUser: {

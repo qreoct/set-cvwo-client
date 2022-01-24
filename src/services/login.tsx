@@ -29,7 +29,6 @@ const getCurrentLoggedInUser = async (): Promise<User> => {
 	const res = await axios.get(`${BASEURL}/logged_in`, { withCredentials: true })    
 		.then(response => response.data)
 		.catch(error => console.error('No such user/not logged in:', error));
-	console.log('loginsvc res.user ' + JSON.stringify(res.user));
 	return res.user;
 };
 

@@ -32,7 +32,6 @@ const LoginForm = () => {
 					if (user != undefined) {
 						dispatch({type: 'SET_CURRENT_USER', payload: user});
 						dispatch({type: 'SET_IS_LOGGED_IN', payload: userLoggedIn.logged_in});
-						console.log('i have set current user!!' + JSON.stringify(currentUser));
 						navigate('/todos');
 					}
 				}

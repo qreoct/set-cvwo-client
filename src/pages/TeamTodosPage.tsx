@@ -10,7 +10,6 @@ const TeamTodosPage = () => {
 	useEffect(() => {
 		const team = async () => {
 			const users = await teamServices.getTeam();
-			console.log('users are', users);
 			dispatch({ type: 'SET_TEAM', payload: users});
 		};
 		team();

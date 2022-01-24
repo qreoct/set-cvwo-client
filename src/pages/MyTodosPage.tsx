@@ -21,7 +21,6 @@ const MyTodosPage = () => {
 			}
 		};
 		getTodos();
-		console.log(JSON.stringify(Object.values(todos)));
 	}, [dispatch]);
 
 	useEffect(() => {

@@ -37,8 +37,6 @@ function App() {
 
 		fetchData().catch(console.error);
 	}, []);
-	console.log('isloggedin ' + isLoggedIn);
-	console.log(isLoggedIn ? JSON.stringify(currentUser) : '');
 
 	return (
 		<div className='App'>

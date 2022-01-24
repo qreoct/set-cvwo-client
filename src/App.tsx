@@ -21,7 +21,7 @@ import { useStateValue } from './state';
 
 function App() {
 	
-	const [{ currentUser, isLoggedIn }, dispatch] = useStateValue();
+	const [{ isLoggedIn }, dispatch] = useStateValue();
 
 	useEffect(() => {
 		const fetchData = async () => {

@@ -54,5 +54,5 @@
     "gh-pages": "^3.2.3"
   },
   "proxy": "http://localhost:3001/",
-  "homepage": "https://qreoct.github.io/set-cvwo-client/"
+  "homepage": "https://set-cvwo.herokuapp.com"
 }

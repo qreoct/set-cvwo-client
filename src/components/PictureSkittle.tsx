@@ -24,7 +24,7 @@ const PictureSkittle = (props: pictureSkittleProps) => {
 	return (
 		<div className={`picture-skittle ${size} shadow`} style={{backgroundColor:`var(--oc-${getColorFromName(props.data)}-5)`}}>
 			{props.img_url && <span> image </span>}
-			<span> {props.data.charAt(0).toUpperCase()} </span>
+			<span title={props.data}> {props.data.charAt(0).toUpperCase()} </span>
 		</div>
 	);
 

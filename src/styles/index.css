@@ -212,10 +212,6 @@ NAVBAR
   margin: var(--size-600);
 }
 
-.navbar__logo:hover {
-  background-color: papayawhip;
-}
-
 .navbar__links {
   display: flex;
   width: 100%;
@@ -431,22 +427,22 @@ TODO-VIEW
 
 .todo-display-notepad {
   padding: var(--size-400);
-  margin-top: var(--size-400);
+  margin: var(--size-600) 0px;
   min-width: 300px;
   min-height: 300px;
   background-color: var(--oc-gray-1);
   box-shadow: var(--shadow-500);
 }
 
-.todo-display-edit-button {
-  margin: var(--size-600) 0px;
+.text-button--orange {
+  margin: var(--size-400);
   background-color: var(--oc-orange-4);
   width: calc(2 * var(--size-900));
   text-align: center;
   color: var(--oc-gray-0);
 }
 
-.todo-display-save-button {
+.text-button--green {
   margin: var(--size-400);
   background-color: var(--oc-green-4);
   width: calc(2 * var(--size-900));
@@ -454,7 +450,7 @@ TODO-VIEW
   color: var(--oc-gray-0);
 }
 
-.todo-display-cancel-button {
+.text-button--gray {
   margin: var(--size-400);
   background-color: var(--oc-gray-1);
   width: calc(2 * var(--size-900));
@@ -547,4 +543,22 @@ FORM
   margin-left: 8px;
   transform: rotate(45deg);
   width: 15px;
+}
+
+.input-assign {
+  height: fit-content;
+  width: fit-content;
+}
+
+.input-assign__cell {
+  border: var(--oc-gray-5) solid 1px;
+  width: fit-content;
+  margin: var(--size-400);
+  padding: var(--size-300);
+  border-radius: var(--size-300);
+
+}
+
+.input-assign__cell:hover {
+  background-color: var(--oc-gray-1);
 }

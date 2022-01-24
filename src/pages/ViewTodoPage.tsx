@@ -5,7 +5,7 @@ import { useStateValue } from '../state';
 
 const ViewTodoPage = () => {
 	const {id} = useParams();
-	const [{ todos }, dispatch] = useStateValue();
+	const [{ todos }] = useStateValue();
 	
 	return (
 		<div className='interactive-content'>

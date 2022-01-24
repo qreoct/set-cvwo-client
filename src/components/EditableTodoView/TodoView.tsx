@@ -11,13 +11,13 @@ interface Props {
 
 const TodoView = (props: Props) => {
 	
-	const [{ currentUser }, dispatch] = useStateValue();
+	const [{ currentUser }] = useStateValue();
 
 	const [messageField, setMessageField] = useState<string>('');
 	const [isEditingMode, setIsEditingMode] = useState<boolean>(false);
 	const isEditor = props.todo.users.filter(u => u.id == currentUser?.id).length == 1; 
 
-	const handleGoToEditingMode = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleGoToEditingMode = () => {
 		setIsEditingMode(true);
 		setMessageField('');
 	};
@@ -56,14 +56,15 @@ const TodoView = (props: Props) => {
 			<div className='todo-display-notes'>
 				<span className='typography--label typography--medium'> Notes </span>
 				{isEditingMode && isEditor ? <EditableNotesArea text={props.todo.notes}
+					id={props.todo.id}
 					setIsEditingMode={setIsEditingMode}
 					setMessage={setMessageField}/>
 					: <ViewOnlyNotesArea text={props.todo.notes} /> }
 			</div>
 
 			{!isEditingMode && isEditor && !props.todo.done &&
-			<div className='todo-display-edit-button button'
-				onClick={e => handleGoToEditingMode(e)}>
+			<div className='text-button--orange button'
+				onClick={handleGoToEditingMode}>
 				<span className='typography--bold'> Edit Todo </span>
 			</div>
 			}

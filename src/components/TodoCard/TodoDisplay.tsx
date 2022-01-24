@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import type { Todo } from '../../models/Todo.types';
 import PictureSkittle from '../PictureSkittle';
 import { Square, CheckSquare} from 'react-feather';

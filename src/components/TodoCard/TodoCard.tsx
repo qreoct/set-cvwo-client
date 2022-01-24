@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import { Todo } from '../../models/Todo.types';
-import { User } from '../../models/User.types';
+import React from 'react';
 import CreateTodoButton from '../CreateTodoButton';
 
 import TodosDisplay from './TodosDisplay';
@@ -18,6 +16,9 @@ interface ContentsProps {
 	content: object[];
 }
 
+// i genuinely forgot where i got this pattern from...
+// although `content` takes in Todo[] now, it has to be typed as any[] to be inferred correctly
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getSpecificContentDisplay(content: any[]) {
 	const contentDisplayDictionary: {[key: string]: React.ReactElement} = 	
 		{

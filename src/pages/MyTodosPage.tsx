@@ -8,11 +8,10 @@ import TodoCard from '../components/TodoCard/TodoCard';
 
 const MyTodosPage = () => {
 
-	const [{ todos, users, isLoading, currentUser }, dispatch] = useStateValue();
+	const [{ todos, currentUser }, dispatch] = useStateValue();
 	const [currentTodos, setCurrentTodos] = useState<Todo[]>([]);
 	
 	useEffect(() => {
-		dispatch({ type: 'FETCHING_TODOS' });
 		const getTodos = async () => {
 			try {
 				const res: Todo[] = await todoService.getTodos();
@@ -26,7 +25,7 @@ const MyTodosPage = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		if (currentUser) {
+		if (currentUser && todos) {
 			const todosArray = Object.values(todos);
 			const currentTodos = todosArray.filter(t => !t.done)
 				.filter(t => t.users.filter(u => u.id == currentUser.id).length > 0 );
@@ -36,15 +35,9 @@ const MyTodosPage = () => {
 
 	return (
 		<div className='interactive-content'>
-			{isLoading ?
-				<p> loading </p>
-				:
-				<>
-					<h1> My Todos </h1>
-					<TodoCard sectionTitle='' hasButton={true} contentDisplayType='todo' content={currentTodos}
-						emptyMessage='You have no todos... yet!'/>
-				</ >
-			}
+			<h1> My Todos </h1>
+			<TodoCard sectionTitle='' hasButton={true} contentDisplayType='todo' content={currentTodos}
+				emptyMessage='You have no todos... yet!'/>
 		</div>
 	);
 };

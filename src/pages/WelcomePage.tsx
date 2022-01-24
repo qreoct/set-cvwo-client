@@ -1,6 +1,5 @@
 import React from 'react';
 import PreviewPic from '../assets/preview.png';
-import { Link } from 'react-router-dom';
 
 const WelcomePage = () => {
 	return (

@@ -9,11 +9,11 @@ const TodoCard_CheckBox = ({handleComplete}: CheckBoxProps) => {
 
 	const [isChecked, setIsChecked] = useState<boolean>(false);
 
-	const handleMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleMouseOver = () => {
 		setIsChecked(true);
 	};
 
-	const handleMouseOut = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleMouseOut = () => {
 		setIsChecked(false);
 	};
 

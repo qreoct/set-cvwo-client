@@ -4,7 +4,7 @@ import { Todo } from '../models/Todo.types';
 import { useStateValue } from '../state';
 
 const ArchiveTodosPage = () => {
-	const [{ todos }, dispatch] = useStateValue();
+	const [{ todos }] = useStateValue();
 
 	const [filteredTodos, setFilteredTodos] = useState<Todo[]>(Object.values(todos));
 	const [filter, setFilter] = useState({

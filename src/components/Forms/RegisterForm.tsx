@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useStateValue } from '../../state/state';
 
 import loginServices from '../../services/login';
 import { useNavigate } from 'react-router';
-import utils from '../../utils/utils';
 
 
 const RegisterForm = () => {
-	const [{ currentUser, todos }, dispatch] = useStateValue();
+	const [{ currentUser }, dispatch] = useStateValue();
 	const navigate = useNavigate();
 
 	const [usernameField, setUsernameField] = useState<string>('');
@@ -67,21 +66,34 @@ const RegisterForm = () => {
 		setNameField('');
 	};
 
+	const handleCancel = () => {
+		navigate('/login');
+	};
+
 	return (
 		<div className='form register-form'>
 			<form onSubmit={(e) => handleSubmitForm(e)}>
-				<label htmlFor='login-form__login-username' className='typography--label'> Username </label>
+				<label htmlFor='login-form__login-username' className='typography--label typography--medium'> Username </label>
 				<br />
 				<input id='login-form__login-username' className='input--bordered' type='text' value={usernameField}
 					onChange={(e) => updateFieldWithText(setUsernameField, e.target.value)} />
 				<br />
-				<label htmlFor='login-form__login-name' className='typography--label'> Name </label>
+				<label htmlFor='login-form__login-name' className='typography--label typography--medium'> Name </label>
 				<br />
 				<input id='login-form__login-name' className='input--bordered' type='text' value={nameField}
 					onChange={(e) => updateFieldWithText(setNameField, e.target.value)} />
 				<br />
-				<button type='submit' className='register-form__button button'> Create Account </button>
+				<button type='submit' className='text-button--orange button'> 
+					<span> Create Account </span>
+				</button>
 			</form>
+			
+			<div className='button text-button--gray'
+				// needed to call the callback
+				// eslint-disable-next-line @typescript-eslint/no-unused-vars
+				onClick={handleCancel}>
+				<span> Cancel </span>
+			</div>
 
 			<p className='typography--bold'> {messageField} </p>
 		</div>

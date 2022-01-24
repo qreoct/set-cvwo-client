@@ -5,7 +5,7 @@ import { useStateValue } from '../state';
 import teamServices from '../services/team';
 
 const TeamTodosPage = () => {
-	const [{ todos, users, isLoading }, dispatch] = useStateValue();
+	const [{ todos, users }, dispatch] = useStateValue();
 
 	useEffect(() => {
 		const team = async () => {

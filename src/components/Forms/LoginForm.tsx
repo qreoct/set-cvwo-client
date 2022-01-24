@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useStateValue } from '../../state/state';
 
 import loginServices from '../../services/login';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 
 
 const LoginForm = () => {
-	const [{ currentUser, todos }, dispatch] = useStateValue();
+	const [{ currentUser }, dispatch] = useStateValue();
 	const navigate = useNavigate();
 
 	const [usernameField, setUsernameField] = useState<string>('');
@@ -53,13 +53,15 @@ const LoginForm = () => {
 	return (
 		<div className='form login-form'>
 			<form onSubmit={(e) => handleSubmitForm(e)}>
-				<label htmlFor='login-form__login-username' className='typography--label'> Username </label>
+				<label htmlFor='login-form__login-username' className='typography--label typography--medium'> Username </label>
 				<br />
 				<input id='login-form__login-username' className='input--bordered' type='text' value={usernameField}
 					onChange={(e) => updateFieldWithText(setUsernameField, e.target.value)} />
 				<br />
 				<br />
-				<button type='submit' className='button login-form__button'> Login </button>
+				<button type='submit' className='button text-button--green'> 
+					<span className='typography--bold'> Login </span>
+				</button>
 			</form>
 
 			<p className='typography--bold'> {messageField} </p>

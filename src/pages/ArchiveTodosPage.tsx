@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TodoCard from '../components/TodoCard/TodoCard';
 import { useStateValue } from '../state';
 
 const ArchiveTodosPage = () => {
-	const [{ todos }, dispatch] = useStateValue();
+	const [{ todos }] = useStateValue();
 
 	return (
 		<div className='interactive-content'>

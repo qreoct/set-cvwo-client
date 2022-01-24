@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Logo from '../assets/wordmark-black.svg';
 import UserImage from '../assets/dog.jpg';
-import { User, Users, Search, CheckSquare, Tool, Menu, LogOut } from 'react-feather';
+import { User, Users, Search, CheckSquare, Menu, LogOut } from 'react-feather';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../state';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
 
 	const [isMobileNavbarShowing, setIsMobileNavbarShowing] = useState(false);
 	const [currentUsername, setCurrentUsername] = useState('');
-	const [{ isLoggedIn, currentUser }, dispatch] = useStateValue();
+	const [{ currentUser }] = useStateValue();
 
 	useEffect(() => {
 		if (currentUser != null) {

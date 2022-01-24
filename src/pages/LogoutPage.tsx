@@ -7,13 +7,14 @@ import loginServices from '../services/login';
 
 const LogoutPage = () => {
 
-	const [{ isLoading }, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 	const [loggedOut, setLoggedOut] = useState(false);
 
 	useEffect(() => {
 		loginServices.logOut();
 		dispatch({ type: 'SET_IS_LOGGED_IN', payload: false });
 		dispatch({ type: 'REMOVE_CURRENT_USER' });
+		setLoggedOut(true);
 	}, []);
 
 	return (
@@ -23,7 +24,6 @@ const LogoutPage = () => {
 					<img src={Logo} className='site__logo navbar__logo' />
 				</Link>
 			</div>
-
 
 			<h1> Log out </h1>
 

@@ -5,6 +5,7 @@ import todoServices from '../../services/todos';
 
 interface EditableNotesAreaProps {
 	text: string;
+	id: number;
 	setIsEditingMode: (mode: boolean) => void;
 	setMessage: (message: string) => void;
 }
@@ -18,8 +19,8 @@ const EditableNotesArea = (props: EditableNotesAreaProps) => {
 		setEditedNotes(e.target.value);
 	};
 
-	const handleSubmit = (e: React.MouseEvent<HTMLDivElement>) => {
-		const currentTodo = Object.values(todos).filter(t => t.notes == props.text && t.notes != '');
+	const handleSubmit = () => {
+		const currentTodo = Object.values(todos).filter(t => t.id == props.id);
 		if (currentTodo.length == 0) {
 			return;
 		}
@@ -42,12 +43,14 @@ const EditableNotesArea = (props: EditableNotesAreaProps) => {
 
 				
 			<div style={{display: 'flex'}}>
-				<div className='todo-display-save-button button'
-					onClick={e => handleSubmit(e)}>
+				<div className='text-button--green button'
+					onClick={handleSubmit}>
 					<span className='typography--bold'> Save Todo </span>
 				</div>
 
-				<div className='todo-display-cancel-button button'
+				<div className='text-button--gray button'
+					// needed to call the callback
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					onClick={e => props.setIsEditingMode(false)}>
 					<span className='typography--bold'> Cancel </span>
 				</div>

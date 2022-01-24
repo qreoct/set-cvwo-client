@@ -85,7 +85,7 @@ const CreateTodo_TagsInputComponent = ({onChange, submitted, setSubmitted}: Tags
 						value={tagInput}
 						onChange={(e) => setTagInput(e.target.value)}/>
 				</li>
-				<button type="button" className='button'
+				<button type="button" className='button text-button--gray'
 					onClick={(e) => handleAddTagViaButton(e)}> add tag </button>
 			</ul>
 		</div>

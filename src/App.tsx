@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
 	BrowserRouter as Router,
 	Routes, Route, Navigate
@@ -11,15 +11,13 @@ import TeamTodosPage from './pages/TeamTodosPage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import RegisterPage from './pages/RegisterPage';
-
-import loginServices from './services/login';
-import teamServices from './services/team';
-import { useStateValue } from './state';
-import { User } from './models/User.types';
 import CreateTodoPage from './pages/CreateTodoPage';
 import ViewTodoPage from './pages/ViewTodoPage';
 import ArchiveTodosPage from './pages/ArchiveTodosPage';
 import SearchPage from './pages/SearchPage';
+
+import loginServices from './services/login';
+import { useStateValue } from './state';
 
 function App() {
 	

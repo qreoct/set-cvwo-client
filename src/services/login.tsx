@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { User } from '../models/User.types';
 import { LoginResponse, RegisterResponse } from '../models/LoginResponse.types';
-const baseUrl = '';
+import BASEURL from '../utils/const';
 
 const logIn = async (user: Record<string, string>): Promise<LoginResponse> => {
-	const res = await axios.post(`${baseUrl}/login`, { user }, { withCredentials: true})
+	const res = await axios.post(`${BASEURL}/login`, { user }, { withCredentials: true})
 		.then(response => response.data)
 		.catch(error => {
 			console.error('Error logging in:', error);
@@ -14,11 +14,11 @@ const logIn = async (user: Record<string, string>): Promise<LoginResponse> => {
 };
 
 const logOut = async () => {
-	await axios.post(`${baseUrl}/logout`);
+	await axios.post(`${BASEURL}/logout`);
 };
 
 const getLoginStatus = async (): Promise<boolean> => {
-	const res = await axios.get(`${baseUrl}/logged_in`, { withCredentials: true })    
+	const res = await axios.get(`${BASEURL}/logged_in`, { withCredentials: true })    
 		.then(response => response.data)
 		.catch(error => console.error('Error logging in:', error));
 
@@ -26,7 +26,7 @@ const getLoginStatus = async (): Promise<boolean> => {
 };
 
 const getCurrentLoggedInUser = async (): Promise<User> => {
-	const res = await axios.get(`${baseUrl}/logged_in`, { withCredentials: true })    
+	const res = await axios.get(`${BASEURL}/logged_in`, { withCredentials: true })    
 		.then(response => response.data)
 		.catch(error => console.error('No such user/not logged in:', error));
 	console.log('loginsvc res.user ' + JSON.stringify(res.user));
@@ -34,7 +34,7 @@ const getCurrentLoggedInUser = async (): Promise<User> => {
 };
 
 const registerNewUser = async (user: Record<string, string>): Promise<RegisterResponse> => {
-	const res = await axios.post(`${baseUrl}/users`, { user }, { withCredentials: true })
+	const res = await axios.post(`${BASEURL}/users`, { user }, { withCredentials: true })
 		.then(response => response.data)
 		.catch(error => console.error('Not able to create user:', error));
 	return res;
